@@ -115,7 +115,7 @@ func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) 
 }
 
 // change owner - invoke function to change owner of asset
-func (t *SimpleChainCode) changeOwner(stub shim.ChaincodeStubInterface, args []string) ([]byte. error) {
+func (t *SimpleChaincode) changeOwner(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var asset, newowner string
 	var err error
 	fmt.Println("running write()")
@@ -126,7 +126,7 @@ func (t *SimpleChainCode) changeOwner(stub shim.ChaincodeStubInterface, args []s
 	
 	asset = args[0] //the asset
 // currentowner = args [1] // the current owner (for verification)
-	new owner = args[1]
+	newowner = args[1]
 	err = stub.PutState(asset, []byte(newowner)) // update the owner of the asset
 	if err != nil {
 		return nil, err
