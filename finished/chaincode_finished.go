@@ -120,7 +120,7 @@ func (t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) 
 func (t *SimpleChaincode) changeOwner(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	var asset, newowner string
 	var err error
-	fmt.Println("running write()")
+	fmt.Println("running changeOwner()")
 	
 	if len(args) != 1 {
 		return nil, errors.New("Incorrect number of args. Need 1. new owner")
@@ -128,7 +128,7 @@ func (t *SimpleChaincode) changeOwner(stub shim.ChaincodeStubInterface, args []s
 	
 	asset = "changeowner" //args[0] //the asset
 // currentowner = args [1] // the current owner (for verification)
-	newowner = args[1]
+	newowner = args[0]
 	err = stub.PutState(asset, []byte(newowner)) // update the owner of the asset
 	if err != nil {
 		return nil, err
